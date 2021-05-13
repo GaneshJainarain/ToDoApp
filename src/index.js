@@ -10,6 +10,28 @@ const typeDefs = gql`
     type Query {
         myTaskLists: [TaskList!]!
     }
+
+    type Mutation {
+        signUp(input: SignUpInput): AuthUser!
+        signIn(input: SignInInput): AuthUser!
+    }
+
+    input SignUpInput {
+        email: String!
+        password: String!
+        name: String!
+        avatar: String
+    }
+
+    input SignInInput {
+        email: String!
+        password: String!
+    }
+
+    type AuthUser {
+        user: User! 
+        token: String!
+    }
   
     type User {
         id: ID!
@@ -42,6 +64,15 @@ const typeDefs = gql`
 const resolvers = {
     Query: {
         myTaskLists: () => []
+    },
+    Mutation: {
+        signUp: (_, data) => {
+            console.log(data)
+
+        },
+        signIn: () => {
+
+        }
     }
     
   };
